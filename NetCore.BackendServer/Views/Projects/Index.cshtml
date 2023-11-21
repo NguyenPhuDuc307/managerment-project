@@ -1,0 +1,125 @@
+@model NetCore.BackendServer.Models.PaginatedList<NetCore.BackendServer.Data.Entities.Project>
+
+@{
+    ViewData["Title"] = "Quản lý dự án";
+}
+
+<h4 style="font-weight:700; color:black">QUẢN LÝ DỰ ÁN</h4>
+
+<p>
+    <a asp-action="Create">Thêm mới dự án</a>
+</p>
+
+<form asp-controller="Projects" asp-action="Index">
+    <div class="d-flex">
+        <input class="form-control" placeholder="Tìm kiếm..." value="@ViewData["CurrentFilter"]" type="text"
+            autocomplete="off" name="SearchString" />
+    </div>
+</form>
+<table class="table table-hover mt-2">
+    <thead>
+        <tr>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].Id)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].Name)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["StartDateSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].StartDateTime)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["EndDateSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].EndDateTime)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TVSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].ThanhVienTG)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TNSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].TruongNhom)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["MaKHSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].CustomerId)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["MaNVSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].EmployeeId)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateCreatedSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].DateCreated)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThanhVienTG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TruongNhom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    <div class="d-flex">
+                        <a asp-action="Edit" class="btn btn-warning me-2" asp-route-id="@item.Id">Chỉnh sửa</a>
+                        <a asp-action="Details" class="btn btn-info me-2" asp-route-id="@item.Id">Chi tiết</a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Xóa bỏ</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]" asp-route-pageNumber="@(Model.PageIndex - 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @prevDisabled">
+    Trang trước
+</a>
+<a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]" asp-route-pageNumber="@(Model.PageIndex + 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @nextDisabled">
+    Trang sau
+</a>

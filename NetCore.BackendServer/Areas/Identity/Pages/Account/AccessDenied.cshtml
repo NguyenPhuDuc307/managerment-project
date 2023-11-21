@@ -1,0 +1,12 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<header>
+    <p class="text-danger">Bạn không có quyền truy cập vào tài nguyên này.</p>
+</header>
+
+<a id="forgot-password" asp-page="./Login"><i class="bi bi-arrow-right-short"></i> Quay lại đăng
+    nhập</a>

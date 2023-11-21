@@ -1,0 +1,66 @@
+@model NetCore.BackendServer.Data.Entities.Project
+
+@{
+    ViewData["Title"] = "Thêm mới dự án";
+}
+
+<h4 style="font-weight:700; color:black">THÊM MỚI DỰ ÁN</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" autocomplete="off" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDateTime" class="control-label"></label>
+                <input asp-for="StartDateTime" class="form-control" />
+                <span asp-validation-for="StartDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDateTime" class="control-label"></label>
+                <input asp-for="EndDateTime" class="form-control" />
+                <span asp-validation-for="EndDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea id="editor" asp-for="Description" class="form-control" autocomplete="off">
+
+                </textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThanhVienTG" class="control-label"></label>
+                <select asp-for="ThanhVienTG" class="form-control" asp-items="ViewBag.Employee"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TruongNhom" class="control-label"></label>
+                <select asp-for="TruongNhom" class="form-control" asp-items="ViewBag.Employee"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label">Nhân viên thực hiện</label>
+                <select disabled asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Thêm mới" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Trở lại danh sách</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,89 @@
+@model NetCore.BackendServer.Models.PaginatedList<NetCore.BackendServer.Data.Entities.User>
+
+@{
+    ViewData["Title"] = "Quản lý nhân viên";
+}
+
+<h4 style="font-weight:700; color:black">QUẢN LÝ NHÂN VIÊN</h4>
+
+<form asp-controller="Users" asp-action="Index">
+    <input class="form-control " placeholder="Tìm kiếm..." value="@ViewData["CurrentFilter"]" type="text"
+        autocomplete="off" name="SearchString" />
+</form>
+
+<table class="table table-hover mt-2">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">Mã NV</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["FullNameSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].FullName)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DobSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].Dob)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["UserNameSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">Tài khoản</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["EmailSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model =>
+                    model[0].Email)</a>
+            </th>
+            <th class="text-nowrap">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PhoneNumberSortParm"]"
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]">Số điện thoại</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    <a asp-action="Details" class="btn btn-info me-2" asp-route-id="@item.Id">Chi tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]" asp-route-pageNumber="@(Model.PageIndex - 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @prevDisabled">
+    Trang trước
+</a>
+<a asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]" asp-route-pageNumber="@(Model.PageIndex + 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]" class="btn btn-default @nextDisabled">
+    Trang sau
+</a>

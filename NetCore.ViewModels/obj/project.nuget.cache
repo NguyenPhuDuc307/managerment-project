@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "mPoeOyZbL5wkPO7VqPkS33y/MbclcP4KalcL1W9pGD9QKvfnPF2HwKxFI3smQiiFUdM78IM1IdlgMzR/lDDUhA==",
+  "success": true,
+  "projectFilePath": "/Users/nguyenphuduc/Desktop/NetCore/NetCore.ViewModels/NetCore.ViewModels.csproj",
+  "expectedPackageFiles": [
+    "/Users/nguyenphuduc/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/Users/nguyenphuduc/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/nguyenphuduc/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "/Users/nguyenphuduc/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.1.0/microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
